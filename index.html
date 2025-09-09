@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Earth Website</title>
+    <!-- daisyUI CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <!-- Tailwind css CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awesome CDN -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- CSS related links -->
+      <link rel="stylesheet" href="./style.css">
+      <!-- google font -->
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class=" shadow-sm bg-[#15803D]">
+            <div class="navbar w-11/12 mx-auto">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li><a>About</a></li>
+        <li>
+          <a>Gallery</a></li>
+        <li><a>Plant a Tree</a></li>
+      </ul>
+    </div>
+    <a class="btn btn-ghost text-xl text-white">Green Earth</a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1 text-white">
+      <li><a>About</a></li>
+      <li><a href="">Gallery</a></li>
+      <li><a>Plant a Tree</a></li>
+    </ul>
+  </div>
+  <div class="navbar-end">
+    <a class="btn rounded-xl text-[#15803D] bg-[#FACC15]">Plant a Tree</a>
+  </div>
+</div>
+        </nav>
+        <div class="banner bg-[#CFF0DC] md:flex items-center justify-around">
+          <div>
+            <img src="./assets/hero-leaf1.png" alt="">
+          </div>
+          <div class=" text-center space-y-6">
+            <h1 class="text-[25px] font-bold md:text-4xl">Plant a Tree, Grow a Future</h1>
+            <p>Join our mission to plant 1 million trees and make the Earth greener for future generations.</p>
+            <button class=" btn rounded-xl text-[#15803D] bg-[#FACC15]">Get involved</button>
+          </div>
+          <div>
+            <img src="./assets/hero-leaf2.png" alt="">
+          </div>
+
+        </div>
+    </header>
+    <main>
+      <!-- dynamic function -->
+      <section class="h-[600px] w-11/12 mx-auto mt-20 ">
+        <div class="mb-5">
+          <h1 class="text-center font-bold">Choose Your Trees</h1>
+        </div>
+        <div class="grid grid-cols-5 gap-3">
+            <div class=" bg-sky-100 col-span-1 p-3">
+              <h1 class="font-semibold mb-3">Categories</h1>
+              <div id="category-container" class="space-y-3">
+                
+              </div>
+            </div>
+            <div class=" col-span-3 bg-white">
+              <div id="plant-container" class="grid grid-cols-3 gap-4 ">
+                
+              </div>
+            </div>
+            <div class=" bg-green-500 col-span-1">
+              <h1>Your Cart</h1>
+            </div>
+
+        </div>
+        
+      </section>
+      <!-- campaign section -->
+       <!-- <section class="mt-20 bg-green-500 h-[300px]">
+
+       </section> -->
+    </main>
+    <footer>
+
+    </footer>
+    <script src="./script.js"></script>
+</body>
+</html>
