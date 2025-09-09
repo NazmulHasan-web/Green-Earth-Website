@@ -5,6 +5,7 @@ const addCart = (plant) => {
   cartHistory.push(plant);
   totalPrice =totalPrice+plant.price;
   displayCart();
+  alert(`${plant.name} has been added to cart!`)
 };
 
 const displayCart = () => {
