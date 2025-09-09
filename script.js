@@ -1,3 +1,46 @@
+let cartHistory=[]
+let totalPrice=0
+// history related function
+const addCart = (plant) => {
+  cartHistory.push(plant);
+  totalPrice =totalPrice+plant.price;
+  displayCart();
+};
+
+const displayCart = () => {
+  const cartContainer = document.getElementById('cart-container');
+  cartContainer.innerHTML = '';
+
+  cartHistory.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.innerHTML =`
+    <div  class="flex items-center justify-between  rounded-lg p-2">
+                <div>
+                  <p>${item.name}</p>
+                  <p>৳${item.price}</p>
+                </div>
+                <button onclick="removeFromCart(${index})">
+                  <i class="fa-solid fa-xmark text-red-500 cursor-pointer"></i>
+                </button>
+      </div>
+    `
+    cartContainer.appendChild(div);
+  })
+   document.getElementById('cart-total').innerText = `Total: ৳${totalPrice}`;
+};
+
+const removeFromCart = (index) => {
+  
+  totalPrice -= cartHistory[index].price;
+
+  cartHistory.splice(index, 1);
+
+  displayCart();
+};
+
+
+
+
 // all categories related functionality
 const allCategories=()=>{
     fetch('https://openapi.programming-hero.com/api/categories')
@@ -53,7 +96,7 @@ const plantContainer=document.getElementById('plant-container')
                   <p>৳${plant.price}</p>
                 </div>
                 <div>
-                  <button class="bg-[#15803D] rounded-lg w-full py-2">Add to Cart</button>
+                  <button onclick='addCart(${JSON.stringify(plant)})' class="bg-[#15803D] rounded-lg w-full py-2">Add to Cart</button>
                 </div>
 
               </div>
