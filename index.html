@@ -67,6 +67,9 @@
     <main>
       <!-- dynamic function -->
       <section class="h-[600px] w-11/12 mx-auto mt-20 ">
+        <div class="flex items-center justify-center mb-3 ">
+          <span id="spinner" class="hidden loading loading-bars loading-xl"></span>
+        </div>
         <div class="mb-5">
           <h1 class="text-center font-bold">Choose Your Trees</h1>
         </div>
@@ -82,7 +85,7 @@
                 
               </div>
             </div>
-            <div class=" bg-green-500 col-span-1">
+            <div class=" bg-sky-100 col-span-1">
               <h1>Your Cart</h1>
             </div>
 
@@ -98,5 +101,20 @@
 
     </footer>
     <script src="./script.js"></script>
+    <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+<dialog id="plants_modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="details-container" class="">
+       
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 </body>
 </html>

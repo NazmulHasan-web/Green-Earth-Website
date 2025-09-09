@@ -15,7 +15,7 @@ const displayCategories=(categories)=>{
         const div=document.createElement('div')
         div.innerHTML=`
         <ul>
-            <li onClick="categoriesNames(${category.id})" class="text-[16px] hover:bg-[#15803D] rounded-md"><a>${category.category_name}</a></li>
+            <li id="link-${category.id}" onClick="categoriesNames(${category.id})" class="text-[16px] link-btn hover:bg-[#15803D] rounded-md cursor-pointer"><a>${category.category_name}</a></li>
         </ul>
         `
     // 4.append container
@@ -27,6 +27,7 @@ allCategories()
 
 // all plants related functionality
 const allPlants=()=>{
+    
     const url='https://openapi.programming-hero.com/api/plants'
     fetch(url)
     .then(res=>res.json())
@@ -44,11 +45,11 @@ const plantContainer=document.getElementById('plant-container')
                   <img class="w-full h-60 object-cover rounded-md" src="${plant.image}" alt="">
                 </div>
                 <div class="flex-1">
-                  <h1 class="font-semibold mb-3">${plant.name}</h1>
+                  <h1 onclick="plantsDetails(${plant.id})" class="font-semibold mb-3 hover:bg-lime-600 cursor-pointer">${plant.name}</h1>
                   <p class="text-left text-[12px]">${plant.description}</p>
                 </div>
                 <div class="flex items-center justify-between mt-3">
-                  <p class="bg-[#DCFCE7] p-2 rounded-md">${plant.category}</p>
+                  <p  class="bg-[#DCFCE7] p-2 rounded-md hover:bg-lime-600 cursor-pointer">${plant.category}</p>
                   <p>৳${plant.price}</p>
                 </div>
                 <div>
@@ -61,17 +62,74 @@ const plantContainer=document.getElementById('plant-container')
 
     plantContainer.appendChild(card)
  }
+
 }
 allPlants()
+// category selected related functionality
+const removeActive=()=>{
+  const linkBtn=document.querySelectorAll('.link-btn')
+  // console.log(linkBtn)
+  linkBtn.forEach((btn)=>btn.classList.remove('active'))
+}
+// Plants details related functionality
+const plantsDetails=async(id)=>{
+  const url=`https://openapi.programming-hero.com/api/plant/${id}`
+  // console.log(url)
+  const res=await fetch(url)
+  const plants=await res.json()
+  displayPlantsDetails(plants.plants)
+}
+
+
+
+
+
+const displayPlantsDetails=(details)=>{
+  console.log(details)
+  const detailsContainer=document.getElementById('details-container')
+   detailsContainer.innerHTML=`
+    <div class=" flex flex-col items-start justify-start p-2 space-y-3">
+            <div>
+              <h3 class="font-bold text-[22px]">${details.name}</h3>
+            </div>
+            <div>
+              <img src="${details.image}" alt="">
+            </div>
+            <div>
+              <p class="mt-2"><span class="font-semibold text-[16px]">category:</span>${details.category}</p>
+              <p class="mt-2"><span class="font-semibold text-[16px]">price:</span>৳${details.price}</p>
+              <p class="mt-2"><span class="font-semibold text-[16px]">Description:</span>${details.description}</p>
+            </div>
+        </div>
+   `
+  document.getElementById("plants_modal").showModal()
+}
+// spinner related functionality
+
+const manageSpinner=(status)=>{
+  if(status==true){
+    document.getElementById('spinner').classList.remove('hidden')
+    document.getElementById('category-container').classList.add('hidden')
+  }
+  else{
+      document.getElementById('category-container').classList.remove('hidden')
+      document.getElementById('spinner').classList.add('hidden')
+  }
+}
 
 
 // plants by category related functionality
 const categoriesNames=(id)=>{
-    
+    manageSpinner(true)
      const url=`https://openapi.programming-hero.com/api/category/${id}`;
     fetch(url)
      .then(res=>res.json())
-     .then(data=>plantsCategories(data.plants))
+     .then(data=>{
+      plantsCategories(data.plants)
+      removeActive();
+      const link=document.getElementById(`link-${id}`)
+      link.classList.add('active')
+     })
  } 
 const plantsCategories=(plants)=>{
   const plantContainer=document.getElementById('plant-container')
@@ -88,7 +146,7 @@ const plantsCategories=(plants)=>{
                   <p class="text-left text-[12px]">${plant.description}</p>
                 </div>
                 <div class="flex items-center justify-between mt-3">
-                  <p class="bg-[#DCFCE7] p-2 rounded-md">${plant.category}</p>
+                  <p onclick="plantsDetails(${plant.id})" class="bg-[#DCFCE7] p-2 hover:bg-lime-600 cursor-pointer rounded-md">${plant.category}</p>
                   <p>৳${plant.price}</p>
                 </div>
                 <div>
@@ -101,5 +159,7 @@ const plantsCategories=(plants)=>{
 
     plantContainer.appendChild(card)
  }
+ manageSpinner(false)
 }
- plantsCategories()
+//  plantsCategories()
+ allPlants()
